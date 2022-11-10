@@ -49,7 +49,7 @@ body {
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
     margin: 6px; 
-
+    gap: 0.5px; 
 }
 
 .key {
