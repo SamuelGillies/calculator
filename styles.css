@@ -32,13 +32,13 @@ body {
 }
 
 #equation {
-    font-size: 1.5rem;
-
+    font-size: 3vh;
+    height: 5vh; 
 }
 
 #displayResult {
-    font-size: 3.5rem;
-
+    font-size: 8vh;
+    height: 10vh; 
 }
 
 #keypad {
@@ -71,6 +71,6 @@ button:active {
     background-color: grey; 
 } 
 
-#num0 {
+.num0 {
     grid-column: 1 / span 2; 
 }

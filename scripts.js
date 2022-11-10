@@ -14,8 +14,16 @@ function divide(a, b) {
     return a / b; 
 }; 
 
-function operator(func, input1, input2) {
-    return func(input1, input2); 
+function invert(a) {
+    return a * -1; 
+}
+
+function percentage(a) {
+    return a * 100; 
+}
+
+function operate(func, input1, input2) {
+    displayValue = func(input1, input2); 
 }
 
 function clear() {
@@ -23,27 +31,38 @@ function clear() {
     input2 = 0; 
 }
 
+function inputVal(a) { 
+    value = value + a.toString(); 
+    return value; 
+}
+
+let value = ""; 
 let input1 = 0; 
 let input2 = 0; 
+let func = ""; 
 
-document.getElementById("num0").addEventListener("click", 0);
-document.getElementById("num1").addEventListener("click", 1);
-document.getElementById("num2").addEventListener("click", 2);
-document.getElementById("num3").addEventListener("click", 3);
-document.getElementById("num4").addEventListener("click", 4);
-document.getElementById("num5").addEventListener("click", 5);
-document.getElementById("num6").addEventListener("click", 6);
-document.getElementById("num7").addEventListener("click", 7);
-document.getElementById("num8").addEventListener("click", 8);
-document.getElementById("num9").addEventListener("click", 9);
+
+
+document.getElementById("0").addEventListener("click", function(e) {inputVal(0)});
+document.getElementById("1").addEventListener("click", function(e) {inputVal(1)});
+document.getElementById("2").addEventListener("click", function(e) {inputVal(2)});
+document.getElementById("3").addEventListener("click", function(e) {inputVal(3)});
+document.getElementById("4").addEventListener("click", function(e) {inputVal(4)});
+document.getElementById("5").addEventListener("click", function(e) {inputVal(5)});
+document.getElementById("6").addEventListener("click", function(e) {inputVal(6)});
+document.getElementById("7").addEventListener("click", function(e) {inputVal(7)});
+document.getElementById("8").addEventListener("click", function(e) {inputVal(8)});
+document.getElementById("9").addEventListener("click", function(e) {inputVal(9)});
 
 document.getElementById("AC").addEventListener("click", clear());
 document.getElementById("inv").addEventListener("click", 0);
 document.getElementById("perc").addEventListener("click", 0);
-document.getElementById("div").addEventListener("click", 0);
-document.getElementById("mul").addEventListener("click", 0);
-document.getElementById("sub").addEventListener("click", 0);
-document.getElementById("plus").addEventListener("click", 0);
-document.getElementById("dec").addEventListener("click", 0);
+document.getElementById("div").addEventListener("click", function(e) {func = divide()});
+document.getElementById("mul").addEventListener("click", function(e) {func = multiply()});
+document.getElementById("sub").addEventListener("click", function(e) {func = subtract()});
+document.getElementById("plus").addEventListener("click", function(e) {func = plus()});
+document.getElementById("dec").addEventListener("click", function(e) {console.log(".")});
 
-document.getElementById("equals").addEventListener("click", operator(func, input1, input2));
+document.getElementById("equals").addEventListener("click", function(e) {console.log(value)});
+
+// operate(func, input1, input2)
