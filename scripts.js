@@ -4,6 +4,7 @@ let input1 = "";
 let input2 = ""; 
 let func = ""; 
 let funcSet = false; 
+let result = ''; 
 
 // functions
 
@@ -36,7 +37,6 @@ function percentage(a) {
 function operate(func, input1, input2) {
     a = Number(input1); 
     b = Number(input2); 
-    let result = ''; 
     
     switch (func) {
         case 'add': 
@@ -52,7 +52,17 @@ function operate(func, input1, input2) {
             result = divide(a,b);
             break;
     }
+    document.getElementById("displayResult").textContent = result; 
+    subsequentMath();
+}
 
+// subsequent processing 
+
+function subsequentMath() {
+    input1 = result; 
+    input2 = ""; 
+    func = ""; 
+    funcSet = true; 
     document.getElementById("displayResult").textContent = result; 
 
 }
@@ -65,8 +75,6 @@ function clear() {
     func = "";
     funcSet = false; 
     document.getElementById("displayResult").textContent = 0; 
-
-   
 }
 
 // input values
