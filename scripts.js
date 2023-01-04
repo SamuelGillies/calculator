@@ -1,3 +1,12 @@
+// initialisation
+
+let input1 = ""; 
+let input2 = ""; 
+let func = ""; 
+let funcSet = false; 
+
+// functions
+
 function add(a, b) {
     return a + b; 
 }; 
@@ -22,28 +31,64 @@ function percentage(a) {
     return a * 100; 
 }
 
+// calculation
+
 function operate(func, input1, input2) {
-    displayValue = func(input1, input2); 
+    a = Number(input1); 
+    b = Number(input2); 
+    let result = ''; 
+    
+    switch (func) {
+        case 'add': 
+            result = add(a, b);
+            break;
+        case 'subtract': 
+            result = subtract(a,b);
+            break;
+        case 'multiply':
+            result = multiply(a, b);
+            break; 
+        case 'divide': 
+            result = divide(a,b);
+            break;
+    }
+
+    document.getElementById("displayResult").textContent = result; 
+
 }
+
+// reset values
 
 function clear() {
-    input1 = 0; 
-    input2 = 0; 
+    input1 = ""; 
+    input2 = ""; 
+    func = "";
+    funcSet = false; 
+    document.getElementById("displayResult").textContent = 0; 
+
+   
 }
+
+// input values
 
 function inputVal(a) { 
-    value = value + a.toString(); 
-    return value; 
+    if (funcSet == false) { 
+        input1 = input1 + a.toString(); 
+        document.getElementById("displayResult").textContent = input1; 
+
+    } else if (funcSet == true) {
+        input2 = input2 + a.toString(); 
+        document.getElementById("displayResult").textContent = input2; 
+    } 
+
 }
 
-let value = ""; 
-let input1 = 0; 
-let input2 = 0; 
-let func = ""; 
 
 
+// event listeners on all calculator buttons
 
-document.getElementById("0").addEventListener("click", function(e) {inputVal(0)});
+//document.getElementsByClassName("key").forEach()
+document.getElementById("0").addEventListener("click", function(e) {inputVal(0)});          // number buttons, sends the appropriate number to the inputVal function
 document.getElementById("1").addEventListener("click", function(e) {inputVal(1)});
 document.getElementById("2").addEventListener("click", function(e) {inputVal(2)});
 document.getElementById("3").addEventListener("click", function(e) {inputVal(3)});
@@ -53,16 +98,13 @@ document.getElementById("6").addEventListener("click", function(e) {inputVal(6)}
 document.getElementById("7").addEventListener("click", function(e) {inputVal(7)});
 document.getElementById("8").addEventListener("click", function(e) {inputVal(8)});
 document.getElementById("9").addEventListener("click", function(e) {inputVal(9)});
+document.getElementById("AC").addEventListener("click", function(e) {clear()});                           // clear button, runs clear function
+//document.getElementById("inv").addEventListener("click", 0);
+//document.getElementById("perc").addEventListener("click", 0);
+document.getElementById("div").addEventListener("click", function(e) {func = 'divide'; funcSet = true;});    // function buttons, assigns the function to the func variable for the operate function
+document.getElementById("mul").addEventListener("click", function(e) {func = 'multiply'; funcSet = true;});
+document.getElementById("sub").addEventListener("click", function(e) {func = 'subtract'; funcSet = true;});
+document.getElementById("plus").addEventListener("click", function(e) {func = 'add'; funcSet = true;});
+document.getElementById("dec").addEventListener("click", function(e) {inputVal('.')});      // add deciman point character to the input val string
+document.getElementById("equals").addEventListener("click", function(e) {operate(func, input1, input2)});   // takes the two numbers and processes them according to the selected function
 
-document.getElementById("AC").addEventListener("click", clear());
-document.getElementById("inv").addEventListener("click", 0);
-document.getElementById("perc").addEventListener("click", 0);
-document.getElementById("div").addEventListener("click", function(e) {func = divide()});
-document.getElementById("mul").addEventListener("click", function(e) {func = multiply()});
-document.getElementById("sub").addEventListener("click", function(e) {func = subtract()});
-document.getElementById("plus").addEventListener("click", function(e) {func = plus()});
-document.getElementById("dec").addEventListener("click", function(e) {console.log(".")});
-
-document.getElementById("equals").addEventListener("click", function(e) {console.log(value)});
-
-// operate(func, input1, input2)
