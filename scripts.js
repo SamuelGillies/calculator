@@ -60,7 +60,6 @@ function operate(func, input1, input2) {
         let large = result.toExponential().split("e"); 
         document.getElementById("displayResult").textContent = large[0]; 
         document.getElementById("extra-info").textContent = "e" + large[1]; 
-
     }
 
     subsequentMath();
@@ -97,7 +96,6 @@ function inputVal(a) {
        } else {
             input1 = input1; 
             document.getElementById("displayResult").textContent = input1; 
-
        }
 
     } else if (funcSet == true) {
@@ -107,8 +105,13 @@ function inputVal(a) {
         } else {
             input2 = input2; 
             document.getElementById("displayResult").textContent = input2; 
-
         }
+    }
+
+    if (input2.length === 0) {                                          // disable equals button until input2 is no longer blank
+        document.getElementById("equals").disabled = true;   
+    } else {
+        document.getElementById("equals").disabled = false;   
     } 
 }
 
@@ -134,4 +137,6 @@ document.getElementById("sub").addEventListener("click", function(e) {func = 'su
 document.getElementById("plus").addEventListener("click", function(e) {func = 'add'; funcSet = true;});
 document.getElementById("dec").addEventListener("click", function(e) {inputVal('.')});      // add deciman point character to the input val string
 document.getElementById("equals").addEventListener("click", function(e) {operate(func, input1, input2)});   // takes the two numbers and processes them according to the selected function
+
+
 
