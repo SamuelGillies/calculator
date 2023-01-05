@@ -49,8 +49,13 @@ function operate(func, input1, input2) {
             result = multiply(a, b);
             break; 
         case 'divide': 
-            result = divide(a,b);
-            break;
+            if (b === 0) {
+                result = 'dumbass'; 
+                break; 
+            } else {
+                result = divide(a,b);
+                break;
+            }
     }
 
     if (result.toString().length <= 10) {
@@ -58,7 +63,7 @@ function operate(func, input1, input2) {
         document.getElementById("extra-info").textContent = ""; 
     } else {
         let large = result.toExponential().split("e"); 
-        document.getElementById("displayResult").textContent = large[0]; 
+        document.getElementById("displayResult").textContent = large[0].substring(0, 10); 
         document.getElementById("extra-info").textContent = "e" + large[1]; 
     }
 
