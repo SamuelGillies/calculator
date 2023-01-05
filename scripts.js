@@ -52,7 +52,17 @@ function operate(func, input1, input2) {
             result = divide(a,b);
             break;
     }
-    document.getElementById("displayResult").textContent = result; 
+
+    if (result.toString().length <= 10) {
+        document.getElementById("displayResult").textContent = result; 
+        document.getElementById("extra-info").textContent = ""; 
+    } else {
+        let large = result.toExponential().split("e"); 
+        document.getElementById("displayResult").textContent = large[0]; 
+        document.getElementById("extra-info").textContent = "e" + large[1]; 
+
+    }
+
     subsequentMath();
 }
 
@@ -63,8 +73,6 @@ function subsequentMath() {
     input2 = ""; 
     func = ""; 
     funcSet = true; 
-    document.getElementById("displayResult").textContent = result; 
-
 }
 
 // reset values
@@ -75,23 +83,34 @@ function clear() {
     func = "";
     funcSet = false; 
     document.getElementById("displayResult").textContent = 0; 
+    document.getElementById("extra-info").textContent = ""; 
+
 }
 
 // input values
 
 function inputVal(a) { 
     if (funcSet == false) { 
-        input1 = input1 + a.toString(); 
-        document.getElementById("displayResult").textContent = input1; 
+        if (input1.length < 10) {
+            input1 = input1 + a.toString(); 
+            document.getElementById("displayResult").textContent = input1; 
+       } else {
+            input1 = input1; 
+            document.getElementById("displayResult").textContent = input1; 
+
+       }
 
     } else if (funcSet == true) {
-        input2 = input2 + a.toString(); 
-        document.getElementById("displayResult").textContent = input2; 
+        if (input2.length < 10) {
+            input2 = input2 + a.toString(); 
+            document.getElementById("displayResult").textContent = input2; 
+        } else {
+            input2 = input2; 
+            document.getElementById("displayResult").textContent = input2; 
+
+        }
     } 
-
 }
-
-
 
 // event listeners on all calculator buttons
 
