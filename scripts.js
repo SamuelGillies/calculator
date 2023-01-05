@@ -93,10 +93,16 @@ function inputVal(a) {
         if (input1.length < 10) {
             input1 = input1 + a.toString(); 
             document.getElementById("displayResult").textContent = input1; 
-       } else {
+        } else {
             input1 = input1; 
             document.getElementById("displayResult").textContent = input1; 
-       }
+        }
+
+        if (input1.includes('.')) {                                     // disables dec button once . is used for input2
+            document.getElementById("dec").disabled = true;   
+        } else {
+            document.getElementById("dec").disabled = false;  
+        }
 
     } else if (funcSet == true) {
         if (input2.length < 10) {
@@ -106,6 +112,12 @@ function inputVal(a) {
             input2 = input2; 
             document.getElementById("displayResult").textContent = input2; 
         }
+
+        if (input2.includes('.')) {                                     // disables dec button once . is used for input2
+            document.getElementById("dec").disabled = true;   
+        } else {
+            document.getElementById("dec").disabled = false;  
+            }
     }
 
     if (input2.length === 0) {                                          // disable equals button until input2 is no longer blank
@@ -113,6 +125,7 @@ function inputVal(a) {
     } else {
         document.getElementById("equals").disabled = false;   
     } 
+
 }
 
 // event listeners on all calculator buttons
@@ -128,14 +141,14 @@ document.getElementById("6").addEventListener("click", function(e) {inputVal(6)}
 document.getElementById("7").addEventListener("click", function(e) {inputVal(7)});
 document.getElementById("8").addEventListener("click", function(e) {inputVal(8)});
 document.getElementById("9").addEventListener("click", function(e) {inputVal(9)});
-document.getElementById("AC").addEventListener("click", function(e) {clear()});                           // clear button, runs clear function
+document.getElementById("AC").addEventListener("click", function(e) {clear()});                             // clear button, runs clear function
 //document.getElementById("inv").addEventListener("click", 0);
 //document.getElementById("perc").addEventListener("click", 0);
 document.getElementById("div").addEventListener("click", function(e) {func = 'divide'; funcSet = true;});    // function buttons, assigns the function to the func variable for the operate function
 document.getElementById("mul").addEventListener("click", function(e) {func = 'multiply'; funcSet = true;});
 document.getElementById("sub").addEventListener("click", function(e) {func = 'subtract'; funcSet = true;});
 document.getElementById("plus").addEventListener("click", function(e) {func = 'add'; funcSet = true;});
-document.getElementById("dec").addEventListener("click", function(e) {inputVal('.')});      // add deciman point character to the input val string
+document.getElementById("dec").addEventListener("click", function(e) {inputVal('.')});                      // add deciman point character to the input val string
 document.getElementById("equals").addEventListener("click", function(e) {operate(func, input1, input2)});   // takes the two numbers and processes them according to the selected function
 
 
